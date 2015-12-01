@@ -1,5 +1,6 @@
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
+var globalShortcut = require('global-shortcut');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -8,7 +9,9 @@ require('crash-reporter').start();
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-app.commandLine.appendSwitch('ppapi-flash-path', '/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so');
+// TODO: Determine path to Pepper flash plugin, rather than hardcoding it
+var pepperFlashPluginPath = '/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so'
+app.commandLine.appendSwitch('ppapi-flash-path', pepperFlashPluginPath);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -16,8 +19,21 @@ app.on('window-all-closed', function() {
   app.quit();
 });
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
+// Prevent multiple instances
+var shouldQuit = app.makeSingleInstance(function(commandLine, workingDirectory) {
+  // Someone tried to run a second instance, we should focus our window
+  if (mainWindow) {
+    if (mainWindow.isMinimized()) mainWindow.restore();
+    mainWindow.focus();
+  }
+  return true;
+});
+
+if (shouldQuit) {
+  app.quit();
+  return;
+}
+
 app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -36,22 +52,8 @@ app.on('ready', function() {
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
-  // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
-  var i = 0
-
-  mainWindow.on('page-title-updated', function(e) {
-    var title = mainWindow.webContents.getTitle()
-    //mainWindow.setTitle(title)
-    //mainWindow.setTitle("TEST" + (i++))
-    //e.preventDefault()
-  })
-
   // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    //mainWindow = null;
+  mainWindow.on('closed', function() {    
+    mainWindow = null;
   });
 });
