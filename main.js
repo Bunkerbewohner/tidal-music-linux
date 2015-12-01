@@ -53,7 +53,17 @@ app.on('ready', function() {
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
   // Emitted when the window is closed.
-  mainWindow.on('closed', function() {    
+  mainWindow.on('closed', function() {
     mainWindow = null;
   });
+
+  console.log("APP READY")
+
+  // handle media keys
+  var routeShortcuts = ["MediaPreviousTrack", "MediaNextTrack", "MediaPlayPause", "MediaStop"]
+  routeShortcuts.forEach(shortcut => {    
+    globalShortcut.register(shortcut, function() {
+      mainWindow.webContents.send("playback-control", shortcut)
+    })
+  })
 });
