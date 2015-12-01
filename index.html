@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TIDAL</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <iframe src="http://listen.tidal.com" plugins></iframe>
+
+    <script>
+
+      setInterval(function() {
+        var doc = document.querySelector("iframe").contentDocument
+        if (doc) {
+          var title = doc.title
+          document.title = title
+        }
+      }, 500)
+
+    </script>
+  </body>
+</html>
