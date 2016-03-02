@@ -49,6 +49,13 @@ app.on('ready', function() {
     }
   });
 
+  // fake user agent as Chrome 41.0.2228.0
+  var session = mainWindow.webContents.session
+  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
+    callback({ cancel: false, requestHeaders: details.requestHeaders });
+  });
+
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
@@ -61,7 +68,7 @@ app.on('ready', function() {
 
   // handle media keys
   var routeShortcuts = ["MediaPreviousTrack", "MediaNextTrack", "MediaPlayPause", "MediaStop"]
-  routeShortcuts.forEach(shortcut => {    
+  routeShortcuts.forEach(shortcut => {
     globalShortcut.register(shortcut, function() {
       mainWindow.webContents.send("playback-control", shortcut)
     })
