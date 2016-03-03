@@ -35,6 +35,13 @@ if (shouldQuit) {
 }
 
 app.on('ready', function() {
+  // fake user agent as Chrome 41.0.2228.0
+  var _session = require('electron').session.defaultSession;
+  _session.webRequest.onBeforeSendHeaders((details, callback) => {
+    details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
+    callback({ cancel: false, requestHeaders: details.requestHeaders });
+  });
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -46,14 +53,11 @@ app.on('ready', function() {
     plugin:true,
     'web-preferences': {
         plugins: true
+    },
+    webPreferences: {
+        plugins: true,
+        session: _session
     }
-  });
-
-  // fake user agent as Chrome 41.0.2228.0
-  var session = mainWindow.webContents.session
-  session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-    details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36';
-    callback({ cancel: false, requestHeaders: details.requestHeaders });
   });
 
   // and load the index.html of the app.
