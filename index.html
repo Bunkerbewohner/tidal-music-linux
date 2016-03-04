@@ -5,9 +5,16 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <iframe src="http://listen.tidal.com" plugins></iframe>
+    <iframe id="tidalframe" src="http://listen.tidal.com" plugins></iframe>
 
     <script>
+
+      var iframe = document.getElementById("tidalframe")
+      iframe.onload = function() {
+        var tidalwindow = iframe.contentWindow
+        tidalwindow.chrome = {}
+        tidalwindow.navigator.mimeTypes["application/x-pnacl"] = 1
+      }
 
       setInterval(function() {
         var doc = document.querySelector("iframe").contentDocument
