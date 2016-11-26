@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "Tidal Music - Linux",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "An electron wrapped client for Tidal",
   "main": "main.js",
   "scripts": {
     "start": "electron main.js"
@@ -23,6 +23,6 @@
   },
   "homepage": "https://github.com/atom/electron-quick-start#readme",
   "devDependencies": {
-    "electron-prebuilt": "^0.35.0"
+    "electron": "^1.0"
   }
 }
