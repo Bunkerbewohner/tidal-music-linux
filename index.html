@@ -25,8 +25,14 @@
           case "MediaPlayPause":
             var playBtn = doc.querySelector("button.js-play")
             var pauseBtn = doc.querySelector("button.js-pause")
-            if (pauseBtn.style.display == "none") playBtn.click()
-            else pauseBtn.click()
+            var playPauseContainer= doc.querySelector(".play-controls__main-button")
+            if (playPauseContainer.className.indexOf("playing") == -1) {
+              playBtn.click()
+            }
+            else
+            {
+              pauseBtn.click()
+            }
             break;
 
           case "MediaNextTrack":

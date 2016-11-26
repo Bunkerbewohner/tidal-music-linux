@@ -5,11 +5,13 @@ for Linux.
 
 ![Screenshot](https://raw.githubusercontent.com/Bunkerbewohner/tidal-music-linux/master/screenshot.png)
 
-## Requirements 
+## Requirements
 
 For music playback to work you need the [PepperFlashPlayer plugin](https://wiki.debian.org/PepperFlashPlayer).
 
-On Ubuntu you can install `pepperflashplugin-nonfree` (then run `sudo update-pepperflashplugin-nonfree --install`) which will copy the library to `/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so` - this path is hardcoded into the application right now. You can change it in main.js by changing the variable `pepperFlashPluginPath`.
+On Ubuntu you can install Flash through [Canonical
+Partners](https://wiki.ubuntu.com/Chromium/Getting-Partner-Flash). Once
+installed, verify the path by opening Chromium and going to [chrome://plugins](chrome://plugins). Click the `details` button on the top right and check that the **Adobe Flash Player** `Location` path is `/usr/lib/adobe-flashplugin/libpepflashplayer.so`. If not then set the `pepperFlashPluginPath` variable in `main.js` to the value reported by Chromium.
 
 
 ## To Use

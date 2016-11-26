@@ -1,16 +1,14 @@
-var app = require('app');  // Module to control application life.
-var BrowserWindow = require('browser-window');  // Module to create native browser window.
-var globalShortcut = require('global-shortcut');
-
-// Report crashes to our server.
-require('crash-reporter').start();
+var electron = require('electron');
+var app = electron.app;  // Module to control application life.
+var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
+var globalShortcut = electron.globalShortcut;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
 // TODO: Determine path to Pepper flash plugin, rather than hardcoding it
-var pepperFlashPluginPath = '/usr/lib/pepperflashplugin-nonfree/libpepflashplayer.so'
+var pepperFlashPluginPath = '/usr/lib/adobe-flashplugin/libpepflashplayer.so'
 app.commandLine.appendSwitch('ppapi-flash-path', pepperFlashPluginPath);
 
 // Quit when all windows are closed.
@@ -44,13 +42,13 @@ app.on('ready', function() {
     autoHideMenuBar: true,
     darkTheme: true,
     plugin:true,
-    'web-preferences': {
+    webPreferences: {
         plugins: true
     }
   });
 
   // and load the index.html of the app.
-  mainWindow.loadURL('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/index.html', {userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36"});
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
@@ -61,9 +59,11 @@ app.on('ready', function() {
 
   // handle media keys
   var routeShortcuts = ["MediaPreviousTrack", "MediaNextTrack", "MediaPlayPause", "MediaStop"]
-  routeShortcuts.forEach(shortcut => {    
-    globalShortcut.register(shortcut, function() {
+  routeShortcuts.forEach(shortcut => {
+    if (!globalShortcut.register(shortcut, function() {
       mainWindow.webContents.send("playback-control", shortcut)
-    })
+    })) {
+      console.log("Failed to register shortcut", shortcut, "Is your desktop environment already handling it?");
+    }
   })
 });
