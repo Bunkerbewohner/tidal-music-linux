@@ -1,5 +1,5 @@
 {
-  "name": "Tidal Music - Linux",
+  "name": "tidal-music-linux",
   "version": "1.0.0",
   "description": "An electron wrapped client for Tidal",
   "main": "main.js",
