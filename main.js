@@ -38,7 +38,7 @@ app.on('ready', function() {
     width: 1200,
     height: 800,
     frame: true,
-    icon: "icon.png",
+    icon: __dirname + "/icon.png",
     autoHideMenuBar: true,
     darkTheme: true,
     plugin:true,
@@ -57,13 +57,20 @@ app.on('ready', function() {
 
   console.log("APP READY")
 
-  // handle media keys
-  var routeShortcuts = ["MediaPreviousTrack", "MediaNextTrack", "MediaPlayPause", "MediaStop"]
-  routeShortcuts.forEach(shortcut => {
-    if (!globalShortcut.register(shortcut, function() {
-      mainWindow.webContents.send("playback-control", shortcut)
-    })) {
-      console.log("Failed to register shortcut", shortcut, "Is your desktop environment already handling it?");
-    }
+  // update window title from webview
+  electron.ipcMain.on("title", function(e, arg) {
+    mainWindow.setTitle(arg);
   })
+
+  // handle media keys (only works on GNOME, where it didn't before)
+  sessionBus.getService("org.gnome.SettingsDaemon").getInterface("/org/gnome/SettingsDaemon/MediaKeys", "org.gnome.SettingsDaemon.MediaKeys", function(err, interface) {
+    if(!err) {
+      interface.on("MediaPlayerKeyPressed", (n, keyName) => {
+        mainWindow.webContents.send('playback-control', keyName);
+      });
+      interface.GrabMediaPlayerKeys("tidal-music-player", 0);
+    } else {
+      console.log("Couldn't grab media keys, this system may be not running GNOME");
+    }
+  });
 });
