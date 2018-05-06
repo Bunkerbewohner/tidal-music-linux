@@ -9,9 +9,9 @@ ipc.on('playback-control', (event, arg) => {
 
   switch (arg) {
     case "Play":
-      var playBtn = doc.querySelector("button.js-play")
-      var pauseBtn = doc.querySelector("button.js-pause")
-      var playPauseContainer= doc.querySelector(".play-controls__main-button")
+      var playBtn = doc.querySelector("#player button.js-play")
+      var pauseBtn = doc.querySelector("#player button.js-pause")
+      var playPauseContainer= doc.querySelector("#player .play-controls__main-button")
       if (playPauseContainer.className.indexOf("playing") == -1)
         playBtn.click()
       else
@@ -19,15 +19,15 @@ ipc.on('playback-control', (event, arg) => {
       break;
 
     case "Next":
-      doc.querySelector("button.js-next").click();
+      doc.querySelector("#player button.js-next").click();
       break;
 
     case "Previous":
-      doc.querySelector("button.js-previous").click();
+      doc.querySelector("#player button.js-previous").click();
       break;
 
     case "Stop":
-      doc.querySelector("button.js-pause").click();
+      doc.querySelector("#player button.js-pause").click();
       break;
   }
 });
