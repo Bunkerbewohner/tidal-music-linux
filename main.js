@@ -1,4 +1,6 @@
 var electron = require('electron');
+var dbus = require('dbus-native');
+var sessionBus = dbus.sessionBus();
 var app = electron.app;  // Module to control application life.
 var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 var globalShortcut = electron.globalShortcut;
