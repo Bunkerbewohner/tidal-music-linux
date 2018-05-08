@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An electron wrapped client for Tidal",
   "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bunkerbewohner/tidal-music-linux.git"
