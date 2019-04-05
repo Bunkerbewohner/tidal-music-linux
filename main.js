@@ -1,6 +1,7 @@
 var electron = require('electron');
 var dbus = require('dbus-native');
 var sessionBus = dbus.sessionBus();
+const find = require('find')
 var app = electron.app;  // Module to control application life.
 var BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 var globalShortcut = electron.globalShortcut;
@@ -9,8 +10,7 @@ var globalShortcut = electron.globalShortcut;
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-// TODO: Determine path to Pepper flash plugin, rather than hardcoding it
-var pepperFlashPluginPath = '/usr/lib/adobe-flashplugin/libpepflashplayer.so'
+const pepperFlashPluginPath = find.fileSync('libpepflashplayer.so','/lib')
 app.commandLine.appendSwitch('ppapi-flash-path', pepperFlashPluginPath);
 
 // Quit when all windows are closed.
