@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Bunkerbewohner/tidal-music-linux",
   "dependencies": {
     "dbus-native": "^0.2.5",
-    "electron": "^3.0.4"
+    "electron": "^3.0.4",
+    "find": "^0.3.0"
   }
 }
