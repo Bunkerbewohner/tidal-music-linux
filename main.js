@@ -10,7 +10,7 @@ var globalShortcut = electron.globalShortcut;
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-const pepperFlashPluginPath = find.fileSync('libpepflashplayer.so','/lib')
+const pepperFlashPluginPath = find.fileSync('libpepflashplayer.so','/usr/lib')
 app.commandLine.appendSwitch('ppapi-flash-path', pepperFlashPluginPath);
 
 // Quit when all windows are closed.
