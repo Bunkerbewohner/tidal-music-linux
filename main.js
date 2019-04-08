@@ -19,20 +19,20 @@ app.on('window-all-closed', function() {
   app.quit();
 });
 
-// Prevent multiple instances
-var shouldQuit = app.makeSingleInstance(function(commandLine, workingDirectory) {
+if(!app.requestSingleInstanceLock()) {
+  // We failed to get the single instance lock, so another instance is running
+  console.log("TIDAL is already running, focusing it");
+  app.quit();
+}
+
+app.on('second-instance', (commandLine, workingDirectory) => {
   // Someone tried to run a second instance, we should focus our window
   if (mainWindow) {
-    if (mainWindow.isMinimized()) mainWindow.restore();
+    if (mainWindow.isMinimized()) { mainWindow.restore(); }
     mainWindow.focus();
   }
   return true;
 });
-
-if (shouldQuit) {
-  app.quit();
-  return;
-}
 
 app.on('ready', function() {
   // Create the browser window.
