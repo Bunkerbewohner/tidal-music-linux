@@ -19,6 +19,6 @@
   "dependencies": {
     "dbus-native": "^0.2.5",
     "electron": "^3.0.4",
-    "find": "^0.3.0"
+    "flash-player-loader": "^1.2.0"
   }
 }
