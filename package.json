@@ -4,21 +4,42 @@
   "description": "An electron wrapped client for Tidal",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --linux",
+    "dist:pacman"  : "electron-builder --linux pacman",
+    "dist:AppImage": "electron-builder --linux AppImage",
+    "dist:snap"    : "electron-builder --linux snap",
+    "dist:rpm"     : "electron-builder --linux rpm",
+    "dist:freebsd" : "electron-builder --linux freebsd",
+    "dist:p5p"     : "electron-builder --linux p5p",
+    "dist:deb"     : "electron-builder --linux deb",
+    "dist:apk"     : "electron-builder --linux apk"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bunkerbewohner/tidal-music-linux.git"
   },
-  "author": "Bunkerbewohner",
+  "author": "Mathias Kahl <mathias.kahl@gmail.com>",
+  "contributors": [
+    "Mathias Kahl <mathias.kahl@gmail.com>",
+    "Andrew Lee <andrewl@mbda.fun>"
+  ],
   "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/Bunkerbewohner/tidal-music-linux/issues"
   },
+  "build": {
+    "appId": "io.github.bunkerbewohner.tidal"
+  },
   "homepage": "https://github.com/Bunkerbewohner/tidal-music-linux",
   "dependencies": {
     "dbus-native": "^0.2.5",
+    "flash-player-loader": "^1.2.0",
+    "find": "^0.3.0"
+  },
+  "devDependencies": {
     "electron": "^3.0.4",
-    "flash-player-loader": "^1.2.0"
+    "electron-builder": "^20.39.0"
   }
 }

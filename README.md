@@ -29,7 +29,40 @@ $ cd tidal-music-linux
 $ npm install && npm start
 ```
 
+## Build to native
 
+This app can be built to a platform-native package for all major Linux distros
+using [electron-builder](https://github.com/electron-userland/electron-builder).
+Simply run `npm run dist:<package format>`.
+
+For instance, for Debian/Ubuntu, run
+
+```sh
+$ npm run dist:deb
+```
+
+And install with:
+
+```sh
+$ dpkg -i dist/your-binary.deb
+```
+
+Or for Arch Linux:
+
+Build:
+
+```sh
+$ npm run dist:pacman
+```
+
+And install:
+
+```
+$ pacman -U dist/your-binary.pacman
+```
+
+For a complete list of electron-builder output formats, check out
+[electron-builder](https://github.com/electron-userland/electron-builder).
 
 #### License [MIT](LICENSE)
 
