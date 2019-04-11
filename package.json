@@ -20,7 +20,11 @@
     "type": "git",
     "url": "git+https://github.com/Bunkerbewohner/tidal-music-linux.git"
   },
-  "author": {
+  "author": "Mathias Kahl <mathias.kahl@gmail.com>",
+  "contributors": [
+    "Mathias Kahl <mathias.kahl@gmail.com>",
+    "Andrew Lee <andrewl@mbda.fun>"
+  ]
     "name": "Bunkerbewohner",
     "email": "bunkerbewohner@dummy"
   },
