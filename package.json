@@ -25,7 +25,7 @@
     "Mathias Kahl <mathias.kahl@gmail.com>",
     "Andrew Lee <andrewl@mbda.fun>"
   ],
-  "license": "CC0-1.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Bunkerbewohner/tidal-music-linux/issues"
   },
