@@ -11,34 +11,39 @@ For music playback to work you need the [PepperFlashPlayer plugin](https://wiki.
 
 On Ubuntu you can install Flash through [Canonical
 Partners](https://wiki.ubuntu.com/Chromium/Getting-Partner-Flash). Once
-installed, verify the path by opening Chromium and going to [chrome://plugins](chrome://plugins). Click the `details` button on the top right and check that the **Adobe Flash Player** `Location` path is `/usr/lib/adobe-flashplugin/libpepflashplayer.so`. If not then set the `pepperFlashPluginPath` variable in `main.js` to the value reported by Chromium.
-
+installed, verify the path by opening Chromium and going to
+[chrome://plugins](chrome://plugins). Click the `details` button on the top
+right and check that the **Adobe Flash Player** `Location` path is
+`/usr/lib/adobe-flashplugin/libpepflashplayer.so`. If not then set the
+`pepperFlashPluginPath` variable in `main.js` to the value reported by Chromium.
 
 ## To Use
 
 To clone and run this repository you'll need [Git](https://git-scm.com) and
-[Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com))
-installed on your computer. From your command line:
+[Node.js](https://nodejs.org/en/download/) installed on your computer. For
+package management, we recommend [yarn](https://yarnpkg.com/en/docs/install).
 
-```bash
+From your command line:
+
+```sh
 # Clone this repository
 $ git clone https://github.com/Bunkerbewohner/tidal-music-linux
 # Go into the repository
 $ cd tidal-music-linux
 # Install dependencies and run the app
-$ npm install && npm start
+$ yarn && yarn start
 ```
 
 ## Build to native
 
 This app can be built to a platform-native package for all major Linux distros
 using [electron-builder](https://github.com/electron-userland/electron-builder).
-Simply run `npm run dist:<package format>`.
+Simply run `yarn dist:<package format>`.
 
 For instance, for Debian/Ubuntu, run
 
 ```sh
-$ npm run dist:deb
+$ yarn dist:deb
 ```
 
 And install with:
@@ -52,7 +57,7 @@ Or for Arch Linux:
 Build:
 
 ```sh
-$ npm run dist:pacman
+$ yarn dist:pacman
 ```
 
 And install:
