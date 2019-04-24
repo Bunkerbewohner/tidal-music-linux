@@ -1,11 +1,13 @@
-const electron      = require('electron');
-const dbus          = require('dbus-native');
-const sessionBus    = dbus.sessionBus();
-const app           = electron.app;  // Module to control application life.
-const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-const flashLoader   = require('flash-player-loader');
+// Import electron
+const electron               = require('electron');
+// Electron api's for managing the application and creation of windows
+const { app, BrowserWindow } = electron;
+// For controlling GNOME media keys
+const sessionBus             = require('dbus-native').sessionBus();
+// Find pepper flash plugin
+const flashLoader            = require('flash-player-loader');
 
-for(const path of require('./pepper-paths.json')) {
+for(let path of require('./pepper-paths.json')) {
   flashLoader.addSource(path);
 }
 flashLoader.load();
