@@ -1,9 +1,9 @@
-const electron = require('electron');
-const dbus = require('dbus-native');
-const sessionBus = dbus.sessionBus();
-const app = electron.app;  // Module to control application life.
+const electron      = require('electron');
+const dbus          = require('dbus-native');
+const sessionBus    = dbus.sessionBus();
+const app           = electron.app;  // Module to control application life.
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
-const flashLoader = require('flash-player-loader');
+const flashLoader   = require('flash-player-loader');
 
 for(const path of require('./pepper-paths.json')) {
   flashLoader.addSource(path);
