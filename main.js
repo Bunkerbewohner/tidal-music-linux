@@ -1,11 +1,11 @@
-// Import electron
-const electron               = require('electron');
 // Electron api's for managing the application and creation of windows
-const { app, BrowserWindow } = electron;
+const { app
+      , BrowserWindow
+      , ipcMain } = require('electron');
 // For controlling GNOME media keys
-const sessionBus             = require('dbus-native').sessionBus();
+const sessionBus  = require('dbus-native').sessionBus();
 // Find pepper flash plugin
-const flashLoader            = require('flash-player-loader');
+const flashLoader = require('flash-player-loader');
 
 for(let path of require('./pepper-paths.json')) {
   flashLoader.addSource(path);
@@ -63,7 +63,7 @@ app.on('ready', function() {
   console.log("APP READY")
 
   // update window title from webview
-  electron.ipcMain.on("title", function(e, arg) {
+  ipcMain.on("title", function(e, arg) {
     mainWindow.setTitle(arg);
   })
 
