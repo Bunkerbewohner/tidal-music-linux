@@ -1,8 +1,7 @@
-// Electron api's for managing the application and creation of windows
 const { app
       , BrowserWindow
+      , globalShortcut
       , ipcMain } = require('electron');
-// Find pepper flash plugin
 const flashLoader = require('flash-player-loader');
 
 for(let path of require('./pepper-paths.json')) {
@@ -49,8 +48,6 @@ app.on('ready', function() {
         plugins: true
     }
   });
-
-  // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html', {userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36"});
 
   // Emitted when the window is closed.
@@ -58,11 +55,20 @@ app.on('ready', function() {
     mainWindow = null;
   });
 
-  console.log("APP READY")
+  // Register global shortcuts corresponding to the correct media keys
+  for(let ename of [ 'MediaPlayPause'
+                   , 'MediaNextTrack'
+                   , 'MediaPreviousTrack'
+                   , 'MediaStop' ]) {
+    globalShortcut.register(ename, () => {
+      // MediaPlayPause
+      mainWindow.webContents.send('playback-control', ename);
+    });
+  }
 
   // update window title from webview
   ipcMain.on("title", function(e, arg) {
     mainWindow.setTitle(arg);
-  })
+  });
 
 });
