@@ -2,8 +2,6 @@
 const { app
       , BrowserWindow
       , ipcMain } = require('electron');
-// For controlling GNOME media keys
-const sessionBus  = require('dbus-native').sessionBus();
 // Find pepper flash plugin
 const flashLoader = require('flash-player-loader');
 
@@ -67,15 +65,4 @@ app.on('ready', function() {
     mainWindow.setTitle(arg);
   })
 
-  // handle media keys (only works on GNOME, where it didn't before)
-  sessionBus.getService("org.gnome.SettingsDaemon").getInterface("/org/gnome/SettingsDaemon/MediaKeys", "org.gnome.SettingsDaemon.MediaKeys", function(err, interface) {
-    if(!err) {
-      interface.on("MediaPlayerKeyPressed", (n, keyName) => {
-        mainWindow.webContents.send('playback-control', keyName);
-      });
-      interface.GrabMediaPlayerKeys("tidal-music-player", 0);
-    } else {
-      console.log("Couldn't grab media keys, this system may be not running GNOME");
-    }
-  });
 });
