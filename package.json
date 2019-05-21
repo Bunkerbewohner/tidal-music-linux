@@ -26,9 +26,6 @@
       "category" : "Music",
       "target" : [
         "AppImage",
-        "snap",
-        "deb",
-        "pacman",
         "tar.xz"
       ],
       "icon": "icon.png"

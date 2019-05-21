@@ -38,12 +38,13 @@ $ yarn && yarn start
 
 This app can be built to a platform-native package for all major Linux distros
 using [electron-builder](https://github.com/electron-userland/electron-builder).
-Simply run `yarn dist:<package format>`.
+Simply run `yarn dist` to build this application to AppImage and source tarball.
+If you want to build a specific format, run `yarn dist --linux [format]`
 
 For instance, for Debian/Ubuntu, run
 
 ```sh
-$ yarn dist:deb
+$ yarn dist --linux deb
 ```
 
 And install with:
@@ -52,12 +53,24 @@ And install with:
 $ dpkg -i dist/your-binary.deb
 ```
 
+For for Fedora/Red Hat, run
+
+```sh
+$ yarn dist --linux rpm
+```
+
+And install with:
+
+```sh
+$ rpm -i dist/your-binary.rpm
+```
+
 Or for Arch Linux:
 
 Build:
 
 ```sh
-$ yarn dist:pacman
+$ yarn dist --linux pacman
 ```
 
 And install:
@@ -70,4 +83,3 @@ For a complete list of electron-builder output formats, check out
 [electron-builder](https://github.com/electron-userland/electron-builder).
 
 #### License [MIT](LICENSE)
-
