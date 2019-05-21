@@ -34,9 +34,7 @@
   },
   "homepage": "https://github.com/Bunkerbewohner/tidal-music-linux",
   "dependencies": {
-    "dbus-native": "^0.2.5",
-    "flash-player-loader": "^1.2.0",
-    "find": "^0.3.0"
+    "flash-player-loader": "^1.2.0"
   },
   "devDependencies": {
     "electron": "^3.0.4",
