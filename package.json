@@ -30,7 +30,10 @@
     "url": "https://github.com/Bunkerbewohner/tidal-music-linux/issues"
   },
   "build": {
-    "appId": "io.github.bunkerbewohner.tidal"
+    "appId": "io.github.bunkerbewohner.tidal",
+    "linux": {
+      "category" : "Music"
+    }
   },
   "homepage": "https://github.com/Bunkerbewohner/tidal-music-linux",
   "dependencies": {
