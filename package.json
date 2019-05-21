@@ -36,7 +36,7 @@
     "flash-player-loader": "^1.2.0"
   },
   "devDependencies": {
-    "electron": "^3.0.4",
+    "electron": "^4.2.2",
     "electron-builder": "^20.41.0"
   }
 }
