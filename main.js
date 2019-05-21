@@ -4,6 +4,7 @@ const { app
       , ipcMain } = require('electron');
 const flashLoader = require('flash-player-loader');
 
+// Load the pepper flash plugin from the supplied paths
 for(let path of require('./pepper-paths.json')) {
   flashLoader.addSource(path);
 }
