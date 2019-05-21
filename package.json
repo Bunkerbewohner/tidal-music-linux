@@ -5,16 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron main.js",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder --linux",
-    "dist:pacman"  : "electron-builder --linux pacman",
-    "dist:AppImage": "electron-builder --linux AppImage",
-    "dist:snap"    : "electron-builder --linux snap",
-    "dist:rpm"     : "electron-builder --linux rpm",
-    "dist:freebsd" : "electron-builder --linux freebsd",
-    "dist:p5p"     : "electron-builder --linux p5p",
-    "dist:deb"     : "electron-builder --linux deb",
-    "dist:apk"     : "electron-builder --linux apk"
+    "dist": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -32,7 +23,15 @@
   "build": {
     "appId": "io.github.bunkerbewohner.tidal",
     "linux": {
-      "category" : "Music"
+      "category" : "Music",
+      "target" : [
+        "AppImage",
+        "snap",
+        "deb",
+        "pacman",
+        "tar.xz"
+      ],
+      "icon": "icon.png"
     }
   },
   "homepage": "https://github.com/Bunkerbewohner/tidal-music-linux",
@@ -41,6 +40,6 @@
   },
   "devDependencies": {
     "electron": "^3.0.4",
-    "electron-builder": "^20.39.0"
+    "electron-builder": "^20.41.0"
   }
 }
