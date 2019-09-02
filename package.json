@@ -7,14 +7,14 @@
     "start": "electron main.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --linux",
-    "dist:pacman"  : "electron-builder --linux pacman",
+    "dist:pacman": "electron-builder --linux pacman",
     "dist:AppImage": "electron-builder --linux AppImage",
-    "dist:snap"    : "electron-builder --linux snap",
-    "dist:rpm"     : "electron-builder --linux rpm",
-    "dist:freebsd" : "electron-builder --linux freebsd",
-    "dist:p5p"     : "electron-builder --linux p5p",
-    "dist:deb"     : "electron-builder --linux deb",
-    "dist:apk"     : "electron-builder --linux apk"
+    "dist:snap": "electron-builder --linux snap",
+    "dist:rpm": "electron-builder --linux rpm",
+    "dist:freebsd": "electron-builder --linux freebsd",
+    "dist:p5p": "electron-builder --linux p5p",
+    "dist:deb": "electron-builder --linux deb",
+    "dist:apk": "electron-builder --linux apk"
   },
   "repository": {
     "type": "git",
