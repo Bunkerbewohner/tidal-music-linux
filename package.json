@@ -39,7 +39,7 @@
     "find": "^0.3.0"
   },
   "devDependencies": {
-    "electron": "^3.0.4",
+    "electron": "^9.1.0",
     "electron-builder": "^20.39.0"
   }
 }
